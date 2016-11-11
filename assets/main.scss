@@ -3,6 +3,17 @@
 ---
 @charset "utf-8";
 
+$brand-color:      #7B331A;
+$banner-color:     adjust-hue($brand-color,  15);
+$accent-color:     adjust-hue($brand-color, -15);
+
+$topbar-bg-color:    $brand-color;
+$primary-color:      $accent-color;
+
+$topbar-dropdown-bg: $topbar-bg-color;
+$topbar-link-hover-lightness: 10%;
+
+/*
 // Our variables
 $base-font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 $base-font-size:   16px;
@@ -38,9 +49,6 @@ $on-laptop:        800px;
 // }
 
 // Import partials from the `minima` theme.
-@import "minima";
+//@import "minima";
+*/
 @import "foundation";
-
-.site-header {
-    border-top-color: $banner-color;
-}
