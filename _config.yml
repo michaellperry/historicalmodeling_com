@@ -1,4 +1,5 @@
 title: Historical Modeling
+author: Michael L Perry
 email: michael@qedcode.com
 description: >
   An analysis and design technique for building distributed systems.
@@ -6,6 +7,7 @@ baseurl: ""
 url: "http://historicalmodeling.com"
 twitter_username: michaellperry
 github_username:  michaellperry
+copyright: 2016
 
 # Build settings
 markdown: kramdown

@@ -56,3 +56,34 @@ $on-laptop:        800px;
 .foundation-data-attribute-namespace {
     font-family: false;
 }
+
+.footer {
+  background-color: $brand-color;
+  color: white;
+  text-align: center;
+  padding: 1rem;
+  .links a {
+    list-style: none;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 3rem 0 2rem;
+    margin: 0;
+    &::after {
+      content: "•";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+    &:last-child::after {
+      content: "";
+      padding: 0 0.4rem 0 0.8rem;
+    }
+  }
+  .contacts {
+    .columns {
+      padding-top: 1rem;
+    }
+    a {
+      color: white;
+    }
+  }
+}
+   
