@@ -6,6 +6,7 @@
 $brand-color:      #7B331A;
 $banner-color:     adjust-hue($brand-color,  15);
 $accent-color:     adjust-hue($brand-color, -15);
+$grey-color:       #888888;
 
 $topbar-bg-color:    $brand-color;
 $primary-color:      $accent-color;
@@ -86,4 +87,12 @@ $on-laptop:        800px;
     }
   }
 }
-   
+
+.icon > svg {
+  display: inline-block;
+  vertical-align: middle;
+
+  path {
+    fill: $grey-color;
+  }
+}
