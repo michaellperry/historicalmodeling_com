@@ -15,7 +15,7 @@
   <div class="row contacts">
     <div class="small-4 columns">
       {% if site.email %}
-        <a href="mailto:{{ site.email }}">{{ site.email }}</a>
+        {% include icon-email.html email=site.email %}
       {% endif %}
     </div>
 
