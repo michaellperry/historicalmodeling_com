@@ -29,6 +29,16 @@ $topbar-link-hover-lightness: 10%;
     padding-bottom: 0.5rem;
   }
 }
+
+.post-header {
+  h1.post-title {
+    margin-bottom: 0px;
+  }
+  .post-meta {
+    color: $grey-color;
+    font-size: small;
+  }
+}
   
 .footer {
   background-color: $brand-color;
