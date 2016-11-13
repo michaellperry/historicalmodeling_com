@@ -19,3 +19,4 @@ exclude:
   - Gemfile.lock
 sass:
     sass_dir: ./_scss
+exclude: [vendor]
