@@ -1,0 +1,21 @@
+---
+layout: default
+---
+
+<div class="row">
+  <div class="large-8 columns">
+    {{ content }}
+  </div>
+  <div class="large-4 columns">
+    <ul>
+    {% for post in site.posts %}
+      <li>
+        <a href="{{ post.url | relative_url }}">
+          <span>{{ post.title | escape }}</span>
+          <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+        </a>
+      </li>
+    {% endfor %}
+    </ul>
+  </div>
+</div>
