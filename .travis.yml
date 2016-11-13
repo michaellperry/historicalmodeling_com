@@ -21,3 +21,4 @@ deploy:
   skip_cleanup: true
   provider: azure_web_apps
   site: historicalmodeling
+  verbose: true
