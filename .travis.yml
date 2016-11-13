@@ -18,5 +18,6 @@ env:
 sudo: false
 
 deploy:
+  skip_cleanup: true
   provider: azure_web_apps
   site: historicalmodeling
