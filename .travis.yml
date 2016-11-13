@@ -16,3 +16,7 @@ env:
   - NOKOGIRI_USE_SYSTEM_LIBRARIES=true # speeds up installation of html-proofer
 
 sudo: false
+
+deploy:
+  provider: azure_web_apps
+  site: historicalmodeling
