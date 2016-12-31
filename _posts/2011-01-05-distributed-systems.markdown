@@ -3,6 +3,8 @@ layout: post
 title:  "Distributed Systems"
 date:   2011-01-05 12:00:00 -0600
 categories: distributed-systems
+permalink: /distributed-systems.html
+redirect_from: /book/distributed-systems/
 ---
 Distributed systems are enterprise solutions to large scale business problems running across multiple machines. They typically have several stakeholders, each from different divisions of an organization. Business run on distributed systems, and when the system fails, the business suffers.
 

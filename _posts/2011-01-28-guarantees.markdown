@@ -3,6 +3,8 @@ layout: post
 title:  "Guarantees"
 date:   2011-01-28 12:00:00 -0600
 categories: distributed-systems
+permalink: /distributed-systems/guarantees.html
+redirect_from: /book/distributed-systems/guarantees/
 ---
 A distributed system based on durable message queues relies upon three guarantees:
 

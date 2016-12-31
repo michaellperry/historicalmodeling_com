@@ -3,6 +3,8 @@ layout: post
 title:  "Message Queues"
 date:   2011-01-10 12:00:00 -0600
 categories: distributed-systems
+permalink: /distributed-systems/message-queues.html
+redirect_from: /book/distributed-systems/message-queues/
 ---
 For a distributed system to work, it has to move information from machine to machine. No single machine is responsible for the system as a whole. But yet all information is somehow related to all other information. So it stands to reason that a major concern of distributed system infrastructure is moving data to the machines that need it. This also ends up being one of the most significant challenges.
 

@@ -3,6 +3,8 @@ layout: post
 title:  "Service Bus"
 date:   2011-01-14 12:00:00 -0600
 categories: distributed-systems
+permalink: /distributed-systems/service-bus.html
+redirect_from: /book/distributed-systems/service-bus/
 ---
 Message queues can improve the reliability and scalability of a distributed system when carefully applied. They solve the RPC problems of synchronous and unreliable messaging. However, they do not solve the problem of one-to-one coupling and configuration. The sender knows which queue to push messages to, and the recipient knows which queue to pull messages from. Service busses solve that problem.
 

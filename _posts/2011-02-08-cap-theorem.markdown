@@ -3,6 +3,8 @@ layout: post
 title:  "The CAP Theorem"
 date:   2011-02-08 12:00:00 -0600
 categories: distributed-systems
+permalink: /distributed-systems/cap-theorem.html
+redirect_from: /book/distributed-systems/cap-theorem
 ---
 Eric Brewer is an expert in distributed systems. In the Principles of Distributed Computing 2000 keynote address, he gave us the CAP Theorem. It states that a distributed system cannot simultaneously guarantee these three attributes:
 
