@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Queries"
+date:   2009-10-07 12:00:00 -0600
+categories: examples
+permalink: /examples/work-item-tracker/queries.html
+redirect_from: /book/examples/workitemtracker/queries/
+---
+
+To see if a ProjectName has been replaced, we define a query:
+
+```
+fact ProjectName
+{
+   Project project;
+   ProjectName* prior;
+   string name;
+
+   bool replaced { not exists ProjectName next : next.prior = this }
+}
+```
+
+Replaced is false until another ProjectName is created. Then it becomes true.
+
+We can use this to see what the current project name is. We define another query:
+
+```
+Project
+{
+   unique;
+
+   ProjectName* name { ProjectName n : n.project = this where not n.replaced }
+}
+```
+
+This query will give us just the leaves of the fact tree. If this query returns no ProjectNames, the Project hasn’t been named yet. If it returns one, then that is the current name. If it returns more than one, then there is a conflict.

@@ -1,0 +1,88 @@
+---
+layout: post
+title:  "Step Three: Query The Model"
+date:   2009-04-06 13:01:00 -0600
+categories: examples
+permalink: /examples/giftcards/query-the-model.html
+redirect_from: /book/examples/giftcards/query/
+---
+
+A model is not complete until it can answer questions. The user will make changes to a system. He will then ask questions. Once you've captured and refined the changes, you need to query those changes to see that it can answer the user's questions.
+
+Before we begin querying the gift card system, allow me to introduce a more verbose language for changes. Rather than listing them as methods with parameters, let me expand them as facts. We call them facts because each one records a historical fact that a change has occurred. Here are some examples:
+
+```
+fact Vendor {
+  string vendorName;
+}
+
+fact Store {
+  Vendor vendor;
+  string storeName;
+}
+
+fact Transasction {
+  Purchase initialPurchase;
+  Store location;
+  money increaseInValue;
+}
+
+fact AddValue : Transaction {
+}
+
+fact Redeem : Transaction {
+}
+```
+
+And the rest follow the same pattern. Even though the notation has changed, the rules have not. These facts are still atomic changes that the user has made to the system. You cannot go back and alter them. Once their "fields" (formerly "parameters") have been set, they cannot be modified.
+
+This fact notation gives us a place to write a query about an object. Let's start with a simple query: has this transaction been voided?
+
+```
+fact Transasction {
+  Purchase initialPurchase;
+  Store location;
+  money increaseInValue;
+
+  bool isVoided {
+    exists VoidTransaction void : void.voidedTransaction = this
+  }
+}
+```
+
+The isVoided query can be read as "there exists a VoidTransaction called void such that void's voidedTransaction is this Transaction". Less formally, if there is a VoidTransaction change for this Transaction, then this Transaction is voided.
+
+It's important to consider that a query is dependent upon related changes. There is no way to "set" it's value. You cannot set the isVoided flag to true. Instead, you have to create the related change that makes the query result to true. This is the essence of historical modeling. Changes are independent. Queries are dependent.
+
+Now let's go for a more complicated query. What is the balance of this Card?
+
+```
+fact Card {
+  Vendor vendor;
+  string cardNumber;
+
+  money balance {
+    sum purchase.purchaseAmount + sum transaction.increaseInValue - sum serviceFee.fee
+      Purchase purchase : purchase.card = this and not purchase.isVoided
+      Transaction transaction : transaction.initialPurchase = purchase and not transaction.isVoided
+      ServiceFee serviceFee : serviceFee.initialPurchase = purchase and not serviceFee.isVoided
+  }
+}
+```
+
+The balance is the sum of the purchase amounts, plus the sum of the transactions, minus the sum of the service fees. The set of purchases to consider are all purchases of this card that have not been voided. The set of transactions and fees to consider are the successors of these purchases that have not been voided.
+
+It is tempting to say something like "When a ServiceFee is applied, the balance of the Card is decreased." This kind of statement should be avoided when talking about a historical model. The balance is a query. It is dependent upon the ServiceFee. Creation of the ServiceFee causes the balance to be recalculated. The new balance will be lower than the old one. But no force in the system actually "decreased" the balance. Balance is dependent, and can therefore not be changed.
+
+Something else might strike you as odd. A card is supposed to be purchased only once. Yet this query calls for a sum over all of the purchases. Unfortunately, there is no restriction in our model that enforces that a card have only one purchase. A historical model cannot restrict the number of successors that get created. It can, at least, detect this scenario so that corrective action can be taken. This is done with another query.
+
+```
+bool hasMultiplePurchases {
+    count purchase > 1
+      Purchase purchase : purchase.card = this and not purchase.isVoided
+  }
+```
+
+You will see this kind of conflict detection often in historical modeling. Prevention doesn't scale. Detection is often good enough.
+
+There are still some queries that this model cannot answer. The next step is to change the model so that we can answer all of the user's questions. Building a historical model is an iterative process.

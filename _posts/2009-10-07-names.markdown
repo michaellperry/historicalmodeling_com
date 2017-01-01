@@ -1,0 +1,70 @@
+---
+layout: post
+title:  "Names"
+date:   2009-10-07 12:00:00 -0600
+categories: examples
+permalink: /examples/work-item-tracker/names.html
+redirect_from: /book/examples/workitemtracker/names/
+---
+
+We want Projects and Developers to have names, so we define those as facts:  ![Names]({{ site.baseurl }}/images/names.jpg)
+
+```
+fact ProjectName
+{
+   Project project;
+   ProjectName* prior;
+   string name;
+}
+
+fact DeveloperName
+{
+   Developer developer;
+   DeveloperName* prior;
+   string name;
+}
+```
+
+
+To set the name of a Project, I have to create a ProjectName fact. The first time that I name a project, the “prior” field is an empty list:
+
+```
+Project x = Project()
+ProjectName n1 = ProjectName(x, {}, "My first project")
+```
+
+Then if I change the name, I populate the “prior” list:
+
+```
+ProjectName n2 = ProjectName(x, {n1}, "My favorite project")
+```
+
+
+If someone else changes the name in parallel, they will populate the prior list the same way:
+
+```
+ProjectName n3 = ProjectName(x, {n1}, "My only project")
+```
+
+
+This pattern finds and resolves conflicts. Visualize the tree of facts:
+
+![Names]({{ site.baseurl }}/images/names2.jpg)
+
+
+You can see from the leaves of this tree that there are two possible ProjectNames. When someone chooses to resolve this conflict, they will put both of these possibilities into the list:
+
+```
+ProjectName n4 = ProjectName(x, {n2, n3}, "My project")
+```
+
+
+![Names]({{ site.baseurl }}/images/names3.jpg)
+
+
+And now the conflict is resolved. The tree has only one leaf.
+
+
+
+
+

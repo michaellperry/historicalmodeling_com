@@ -1,0 +1,213 @@
+---
+layout: post
+title:  "Step Four: Repeat"
+date:   2009-04-07 13:01:00 -0600
+categories: examples
+permalink: /examples/giftcards/repeat.html
+redirect_from: /book/examples/giftcards/repeat/
+---
+
+The historical model is looking pretty good. It captures changes to the system, enforces that some are prerequisites of others, and can answer questions. Unfortunately, it still cannot answer all questions.
+
+The card-holder can get the balance of their card. But they are not the only user of this system. The vendor and the store owner have questions of their own. When a store sells or adds value to a card, they gain money. When a store redeems a card, they loose money. The vendor wants to balance the ledger at the end of the day.
+
+Date of business is a first-class concept in a point-of-sale system. It isn't just the date on which a transaction took place. It's an entity under which transactions are rolled up. A store that is open until 2 in the morning will continue to book transactions against the prior day's date of business. The date of business changes when the store closes out its register.
+
+Let's add date of business to the model.
+
+```
+fact DateOfBusiness {
+  date date;
+}
+
+fact Purchase {
+  Card card;
+  Store location;
+  DateOfBusiness dateOfBusiness;
+  money purchaseAmount;
+}
+
+fact Transaction {
+  Purchase initialPurchase;
+  Store location;
+  DateOfBusiness dateOfBusiness;
+  money increaseInValue;
+}
+```
+
+Money is transferred on a regular basis from stores to a central account and back again. The system needs to keep track of these transfers in order to avoid duplicates. A transfer reconciles all transactions for a store on a date of business.
+
+```
+fact Transfer {
+  Store location;
+  DateOfBusiness dateOfBusiness;
+  Purchase* purchases;
+  Transaction* transactions;
+
+  money amountTransferredToCentralAccount {
+    sum purchase.purchaseAmount + transaction.increaseInValue
+      Purchase purchase in purchases
+      Transaction transaction in transactions
+  }
+}
+```
+
+We create a Transfer at the end of a DateOfBusiness and collect all of the day's purchases and transactions. The Purchases and Transactions are prerequisites to the Transfer, so those lists appear as fields. Once the Transfer is created, these lists cannot be changed. Just like any other field of a change class, these lists are immutable.
+
+To create a Transfer, we need to know all of the Purchases and Transactions to put into these lists. That requires a query based on the Store and DateOfBusiness. Historical Modeling, however, requires that we query based on just one object. So we need to refactor our model to bring Store and DateOfBusiness together.
+
+```
+fact StoreDateOfBusiness {
+  Store store;
+  DateOfBusiness dateOfBusiness;
+}
+
+fact Purchase {
+  Card card;
+  StoreDateOfBusiness storeDateOfBusiness;
+  money purchaseAmount;
+}
+
+fact Transaction {
+  Purchase initialPurchase;
+  StoreDateOfBusiness storeDateOfBusiness;
+  money increaseInValue;
+}
+
+Now we can perform the query.
+
+fact StoreDateOfBusiness {
+  Store store;
+  DateOfBusiness dateOfBusiness;
+
+  Purchase* purchases {
+    Purchase purchase : purchase.storeDateOfBusiness = this and not purchase.isVoided
+  }
+
+  Transaction* transactions {
+    Transaction transaction : transaction.storeDateOfBusiness = this and not transaction.isVoided
+  }
+}
+```
+
+Now the model answers the right questions. It gives the card holder the current balance of his card. It also gives the store owner the amount of money that he should transfer into or out of the central account at the end of the day. In each iteration, the model is refined to factor common ideas, to add relevant queries, and to capture important constraints. After a few more iterations, this historical model will be complete.
+
+The complete model appears here in its current form, both graphically and textually:
+
+![Repeat]({{ site.baseurl }}/images/repeat.jpg)
+
+```
+fact Vendor {
+  string vendorName;
+
+  Store* stores {
+    Store store : store.vendor = this and not store.isClosed;
+  }
+}
+
+fact Store {
+  Vendor vendor;
+  string storeName;
+
+  bool isClosed {
+    exists CloseStore close : close.closedStore = this
+  }
+}
+
+fact DateOfBusiness {
+  date date;
+}
+
+fact StoreDateOfBusiness {
+  Store store;
+  DateOfBusiness dateOfBusiness;
+
+  Purchase* purchases {
+    Purchase purchase : purchase.storeDateOfBusiness = this and not purchase.isVoided
+  }
+
+  Transaction* transactions {
+    Transaction transaction : transaction.storeDateOfBusiness = this and not transaction.isVoided
+  }
+}
+
+fact Card {
+  Vendor vendor;
+  string cardNumber;
+
+  money balance {
+    sum purchase.purchaseAmount + sum transaction.increaseInValue - sum serviceFee.fee
+      Purchase purchase : purchase.card = this and not purchase.isVoided
+      Transaction transaction : transaction.initialPurchase = purchase and not transaction.isVoided
+      ServiceFee serviceFee : serviceFee.initialPurchase = purchase and not serviceFee.isVoided
+  }
+
+  bool hasMultiplePurchases {
+    count purchase > 1
+      Purchase purchase : purchase.card = this and not purchase.isVoided
+  }
+}
+
+fact Purchase {
+  Card card;
+  StoreDateOfBusiness storeDateOfBusiness;
+  money purchaseAmount;
+
+  bool isVoided {
+    exists VoidPurchase void : void.voidedPurchase = this
+  }
+}
+
+fact Transaction {
+  Purchase initialPurchase;
+  StoreDateOfBusiness storeDateOfBusiness;
+  money increaseInValue;
+
+  bool isVoided {
+    exists VoidTransaction void : void.voidedTransaction = this
+  }
+}
+
+fact AddValue : Transaction {
+}
+
+fact Redeem : Transaction {
+}
+
+fact VoidTransaction {
+  Transaction voidedTransaction;
+}
+
+fact VoidPurchase {
+  Purchase voidedPurchase;
+}
+
+fact Transfer {
+  StoreDateOfBusiness storeDateOfBusiness;
+  Purchase* purchases;
+  Transaction* transactions;
+
+  money amountTransferredToCentralAccount {
+    sum purchase.purchaseAmount + transaction.increaseInValue
+      Purchase purchase in purchases
+      Transaction transaction in transactions
+  }
+}
+
+fact ServiceFee {
+  Purchase initialPurchase;
+  money fee;
+
+  bool isVoided {
+    exists VoidServiceFee void : void.voidedServiceFee = this
+  }
+}
+
+fact VoidServiceFee {
+  ServiceFee voidedServiceFee;
+}
+
+fact CloseStore {
+  Store closedStore;
+}
+```
