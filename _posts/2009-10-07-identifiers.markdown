@@ -7,7 +7,8 @@ permalink: /examples/work-item-tracker/identifiers.html
 redirect_from: /book/examples/workitemtracker/identifiers/
 ---
 
-Suppose we want the ability to find a Developer by name. Let’s define a fact that is unique based only upon name: 
+Suppose we want the ability to find a Developer by name. Let’s define a fact that is unique based only upon name:
+
 ![Identifiers]({{ site.baseurl }}/images/identifiers.jpg)
 
 ```
@@ -16,7 +17,6 @@ fact DeveloperIdentifier
    string name;
 }
 ```
-
 
 If I try to create two DeveloperIdentifiers with the same name, I get the same object each time:
 

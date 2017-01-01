@@ -4,7 +4,7 @@ title:  "Uniqueness"
 date:   2009-04-07 13:01:00 -0600
 categories: examples
 permalink: /examples/giftcards/uniqueness.html
-redirect_from: /book/examples/content/uniqueness/
+redirect_from: /book/content/uniqueness/
 ---
 
 Historical Modeling is all about the changes made to a system, and only to a lesser extent about the objects in the system. It therefore has a different approach to identity.
@@ -82,11 +82,9 @@ fact Purchase {
 
 Going through the model, there are a few more facts that need the "unique" field. Here's the complete list:
 
-	-Purchase
-	
-	-Transaction
-	
-	-ServiceFee
+- Purchase
+- Transaction
+- ServiceFee
 	
 Transfer does not need "unique" because it has sets of Transactions and Purchases as fields. These provide a strong business uniqueness, so no artificial uniqueness is required. If we added a business rule that only one ServiceFee is applied to a Purchase within a DateOfBusiness, then we could remove the "unique" field from ServiceFee, too.
 

@@ -7,7 +7,9 @@ permalink: /examples/work-item-tracker/audit-trail.html
 redirect_from: /book/examples/workitemtracker/audit_trail/
 ---
 
-To track assignments of work items to developers, we'll create a folder concept. ![Audit Trial]({{ site.baseurl }}/images/audit_trail.jpg)
+To track assignments of work items to developers, we'll create a folder concept.
+
+![Audit Trial]({{ site.baseurl }}/images/audit_trail.jpg)
 
 ```
 fact Folder

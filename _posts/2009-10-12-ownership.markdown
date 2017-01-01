@@ -10,6 +10,7 @@ redirect_from: /book/examples/workitemtracker/ownership/
 Whereas a developer can be a member of several projects over time, a work item belongs to only one project. It is part of that project when it is created, it cannot be a part of multiple projects, and it cannot be moved to another project. This is strict ownership.
 
 Since all fields in a historical fact are immutable, ownership is simply represented as a field referencing the owner.
+
 ![Ownership]({{ site.baseurl }}/images/ownership.jpg)
 
 ```

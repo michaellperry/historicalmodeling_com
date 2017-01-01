@@ -8,11 +8,12 @@ redirect_from: /book/examples/workitemtracker/uniqueidentifiers/
 ---
 
 Work items need unique identifiers within a project. These aren't required by the model, since the model uses the "unique" field. Instead, these are required by people talking about and exchanging email regarding work items. They are also used to reference work items in external systems that are not connected to the historical model. This unique identifier has to be human readable.
+
 ![Unique Identifiers]({{ site.baseurl }}/images/uniqueidentifiers.jpg)
 
 Any client can create a work item without deferring to a central authority. The client cannot assign a unique identifier to the work item. Until the client synchronizes, the work item remains anonymous. After it synchronizes, a centralized work item identification service can assign it a unique identifier.
 
-**Work item identification service**
+## Work item identification service
 
 We install a centralized service running on one machine. This service claims a project for which it will generate identifiers. By mutual agreement, no other service can claim that project. This is not enforced by the model, just by convention.
 

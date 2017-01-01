@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Work Item Tracker"
-date:   down 13:01:00 -0600
+date:   2009-10-07 12:00:00 -0600
 categories: examples
 permalink: /examples/work-item-tracker.html
 redirect_from: /book/examples/workitemtracker/
@@ -161,20 +161,12 @@ fact WorkItemIdentificationService
 }
 ```
 
--[Uniqueness]({{ site.baseurl }}{% link _posts/2009-10-07-uniqueness.markdown %}) 
-
--[Names]({{ site.baseurl }}{% link _posts/2009-10-07-names.markdown %})
-
--[Queries]({{ site.baseurl }}{% link _posts/2009-10-07-queries.markdown %})
-
--[Properties]({{ site.baseurl }}{% link _posts/2009-10-07-properties.markdown %})
-
--[Identifiers]({{ site.baseurl }}{% link _posts/2009-10-07-identifiers.markdown %})
-
--[Associations]({{ site.baseurl }}{% link _posts/2009-10-07-associations.markdown %})
-
--[Ownership]({{ site.baseurl }}{% link _posts/2009-10-07-ownership.markdown %})
-
--[Audit Trail]({{ site.baseurl }}{% link _posts/2009-10-07-audit_trial.markdown %})
-
--[Unique Identifiers]({{ site.baseurl }}{% link _posts/2009-10-07-unique_identifiers.markdown %})
+- [Uniqueness]({{ site.baseurl }}{% link _posts/2009-10-07-uniqueness.markdown %}) 
+- [Names]({{ site.baseurl }}{% link _posts/2009-10-07-names.markdown %})
+- [Queries]({{ site.baseurl }}{% link _posts/2009-10-07-queries.markdown %})
+- [Properties]({{ site.baseurl }}{% link _posts/2009-10-07-properties.markdown %})
+- [Identifiers]({{ site.baseurl }}{% link _posts/2009-10-07-identifiers.markdown %})
+- [Associations]({{ site.baseurl }}{% link _posts/2009-10-07-associations.markdown %})
+- [Ownership]({{ site.baseurl }}{% link _posts/2009-10-12-ownership.markdown %})
+- [Audit Trail]({{ site.baseurl }}{% link _posts/2009-10-12-audit_trial.markdown %})
+- [Unique Identifiers]({{ site.baseurl }}{% link _posts/2009-10-23-unique_identifiers.markdown %})

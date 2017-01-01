@@ -7,7 +7,9 @@ permalink: /examples/work-item-tracker/associations.html
 redirect_from: /book/examples/workitemtracker/associations/
 ---
 
-The last thing I want to do with Developers and Projects is to make a Developer a member of a Project. This gives them access to that Project’s tasks.  ![Associations]({{ site.baseurl }}/images/associations.jpg)
+The last thing I want to do with Developers and Projects is to make a Developer a member of a Project. This gives them access to that Project’s tasks.
+
+![Associations]({{ site.baseurl }}/images/associations.jpg)
 
 ```
 fact ProjectMembership

@@ -3,8 +3,8 @@ layout: post
 title:  "Pairing Without A Matchmaking Service"
 date:   2009-02-14 13:01:00 -0600
 categories: examples
-permalink: /examples/two-player-game.html
-redirect_from: /book/examples/content/two-player-game/
+permalink: /examples/two-player-game/pairing-without-matchmaking-service.html
+redirect_from: /book/content/pairing-without-matchmaking-service/
 ---
 
 In some circumstances, it is undesirable to require a matchmaking service to pair requests. Perhaps the frequency of requests is too low to justify the overhead of a service. Or perhaps we want to eliminate this single point of failure.
@@ -17,7 +17,7 @@ Other clients respond to the request by creating a *Bid*. This relationship agai
 
 The requestor selects one of the bids. It creates an *Accept* fact, simultaneously acknowledging the bid and closing the request. The relationship with the bid pivots so that the bidder receives the result. But the relationship of the accept with the request is not a pivot. All observers of the request must also be able to observe the accept.
 
-**Rolling Queue**
+## Rolling Queue
 
 No single service processes this game queue. Clients will come and go. If we opt for a simple queue, all clients will receive all requests, not just the ones that were recently added. Those requests would not age.
 
@@ -29,7 +29,7 @@ If clients are to communicate through a rolling queue, they must have an approxi
 
 To find requests, each client queries the current time frame and the prior time frame. But to queue a new request, the client adds it only to the current time frame. This overlap ensures that requests queued toward the end of the time frame still have a full duration before expiration.
 
-**The Algorithm**
+## The Algorithm
 
 A client wishing to join a game will first look for requests in the prior and current time frames. It obtains the current time from a time server, rounds it down to the beginning of the duration, and addresses that frame of the queue. Only requests that have not yet been accepted or canceled are considered. If a request is found in the current or prior frame, the client chooses one arbitrarily and places a bid on it.
 

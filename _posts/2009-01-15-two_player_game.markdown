@@ -4,7 +4,7 @@ title:  "Two Player Game"
 date:   2009-01-15 13:01:00 -0600
 categories: examples
 permalink: /examples/two-player-game.html
-redirect_from: /book/examples/content/two-player-game/
+redirect_from: /book/content/two-player-game/
 ---
 
 People on different machines can use a historical model to communicate. Their models are synchronized so that a fact created by one person becomes visible to the other.
@@ -39,7 +39,7 @@ The service creates a Game for each pair of GameRequests. The creation of that g
 
 Once a Game has been created, each person creates a Player fact. This fact records the relationship between a Person and a Game. They then play the game by making Moves.
 
-**Pivots**
+## Pivots
 
 At several points in this graph, a fact is created by one machine in response to a different fact created by another. The role that relates two facts from different sources is called a “pivot”. These roles are indicated in red.
 
