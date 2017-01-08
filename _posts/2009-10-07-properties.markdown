@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/properties.html
 redirect_from: /book/examples/workitemtracker/properties/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 Because the above pattern is so common in historical modeling, the Factual modeling language defines a construct for it. We could just write:
 
 ```

@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/uniqueness.html
 redirect_from: /book/examples/workitemtracker/uniqueness/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 First, we need to define top-level constructs:
 
 ![Uniqueness]({{ site.baseurl }}/images/uniqueness.jpg)

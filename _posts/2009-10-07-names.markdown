@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/names.html
 redirect_from: /book/examples/workitemtracker/names/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 We want Projects and Developers to have names, so we define those as facts:
 
 ![Names]({{ site.baseurl }}/images/names.jpg)

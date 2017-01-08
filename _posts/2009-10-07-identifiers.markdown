@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/identifiers.html
 redirect_from: /book/examples/workitemtracker/identifiers/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 Suppose we want the ability to find a Developer by name. Let’s define a fact that is unique based only upon name:
 
 ![Identifiers]({{ site.baseurl }}/images/identifiers.jpg)

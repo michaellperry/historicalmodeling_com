@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/queries.html
 redirect_from: /book/examples/workitemtracker/queries/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 To see if a ProjectName has been replaced, we define a query:
 
 ```

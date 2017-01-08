@@ -7,6 +7,8 @@ permalink: /examples/work-item-tracker/associations.html
 redirect_from: /book/examples/workitemtracker/associations/
 ---
 
+[Work Item Tracker]({{ site.baseurl }}{% link _posts/2009-10-07-work-item-tracker.markdown %})
+
 The last thing I want to do with Developers and Projects is to make a Developer a member of a Project. This gives them access to that Project’s tasks.
 
 ![Associations]({{ site.baseurl }}/images/associations.jpg)
