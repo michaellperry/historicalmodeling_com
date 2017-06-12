@@ -7,7 +7,7 @@ baseurl: ""
 url: "http://historicalmodeling.com"
 twitter_username: michaellperry
 github_username:  michaellperry
-copyright: 2016
+copyright: 2017
 
 # Build settings
 markdown: kramdown

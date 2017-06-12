@@ -1,0 +1,16 @@
+digraph "workitem" {
+
+rankdir=BT
+Membership->Developer
+Membership->Project
+
+WorkItem->Project
+
+Assignment->Membership
+Assignment->WorkItem
+Assignment->Assignment [label="*"]
+
+Note->Developer
+Note->Assignment
+
+}

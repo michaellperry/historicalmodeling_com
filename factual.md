@@ -2,6 +2,7 @@
 layout: page
 title: The Factual Modeling Language
 permalink: /Factual/
+order: 1
 ---
 
 The Factual modeling language describes a historical model as a collection if interrelated facts. Factual compilers produce code for libraries like UpdateControls.Correspondence. The rules of Factual are:
