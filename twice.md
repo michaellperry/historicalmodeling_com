@@ -2,7 +2,7 @@
 title: Don't Click Submit Twice!!
 layout: page
 permalink: /DontClickSubmitTwice/
-order: 0
+order: 1
 ---
 
 <button type="button" onclick="location.href='https://github.com/michaellperry/Mathematicians';">Download Sample</button>
