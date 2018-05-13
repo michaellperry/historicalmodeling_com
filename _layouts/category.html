@@ -1,0 +1,17 @@
+---
+layout: default
+---
+<div class="row">
+  <div class="small-12 columns posts">
+  <h1>{{ page.title | escape }}</h1>
+    <div class="post-content" itemprop="articleBody">
+      {{ content }}
+    </div>
+  
+    {% assign posts = site.categories[page.category] | sort: 'date' %}
+    {% for post in posts %}
+      <div><a href="{{ post.url | relative_url }}">{{ post.title | escape }}</a></div>
+      <div class="post-date">{{ post.date | date: "%b %-d, %Y" }}</div>
+    {% endfor %}
+  </div>
+</div>
