@@ -1,7 +1,9 @@
 ---
 title: A Learning Journey
-layout: page
+layout: post
 permalink: /Journey/
+date: 2018-04-28
+author: Jan
 order: 0
 ---
 
