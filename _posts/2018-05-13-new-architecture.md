@@ -30,6 +30,6 @@ All my wishes fulfilled?  Not yet. The old architecture had one very important s
 
 **Note from Michael**: Not to worry. This problem has solutions. Let's discuss some of the options, and I'll provide documentation for the readers.
 
-So the basic architecture is clear, now it's time for the real work.  In the next episode we 'll start building our historical model.
+So the basic architecture is clear, now it's time for the real work.  In the next episode we'll start building our historical model.
 
 Want to prepare?  Have a look at [How Not to Destroy Data](https://www.youtube.com/watch?v=NW0-gXAoPG4).  For those who have a Pluralsight subscription and finished [the Collaboration course](https://app.pluralsight.com/library/courses/occasionally-connected-windows-mobile-apps-collaboration), [Occasionally Connected Windows Mobile Apps: Enterprise LOB](https://www.pluralsight.com/courses/occasionally-connected-windows-mobile-apps-lob) might be of interest to you.
